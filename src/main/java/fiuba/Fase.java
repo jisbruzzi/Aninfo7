@@ -3,12 +3,12 @@ package fiuba;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Iteracion {
+public class Fase {
 	private String nombre;
 	private List<Tarea> tareas;
 	private int proximoId;
 
-	public Iteracion(String nombre) {
+	public Fase(String nombre) {
 		this.nombre = nombre;
 		tareas = new ArrayList<Tarea>();
 		proximoId=0;

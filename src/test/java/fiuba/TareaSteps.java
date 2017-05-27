@@ -21,7 +21,7 @@ import static org.junit.Assert.assertFalse;
 public class TareaSteps {
 
     private Proyecto proyecto;
-    private Map<String,Iteracion> iteraciones;
+    private Map<String,Fase> fases;
     private Map<String,Requerimiento> requerimientos;
     private Map<String,Tarea> tareas;
     private Empresa empresa;
@@ -31,7 +31,7 @@ public class TareaSteps {
     public void que_hay_una_empresa_y_un_proyecto() throws Throwable {
         empresa = new Empresa();
         proyecto=empresa.crearProyecto("Hacer Manaos");
-        iteraciones = new HashMap<String,Iteracion>();
+        fases = new HashMap<String,Fase>();
         requerimientos = new HashMap<String,Requerimiento>();
         tareas = new HashMap<String,Tarea>();
     }
@@ -39,8 +39,8 @@ public class TareaSteps {
     
     @Dado("^existe la iteración \"(.*?)\"$")
     public void que_existe_la_iteración(String arg1) throws Throwable {
-    	Iteracion i =proyecto.agregarIteracion(arg1);
-        iteraciones.put(arg1,i);
+    	Fase i =proyecto.agregarIteracion(arg1);
+        fases.put(arg1,i);
     }
 
     @Dado("^el proyecto tiene el requisito \"(.*?)\"$")
@@ -55,7 +55,7 @@ public class TareaSteps {
 
     @Dado("^existe una tarea llamada \"(.*?)\" de la iteración \"(.*?)\"$")
     public void que_existe_una_tarea_llamada_de_la_iteración(String nTarea, String nIteracion) throws Throwable {
-    	Iteracion iteracion = iteraciones.get(nIteracion);
+    	Fase iteracion = fases.get(nIteracion);
         tareas.put(nTarea,iteracion.agregarTarea(nTarea));
     }
 
@@ -122,7 +122,7 @@ public class TareaSteps {
     
     @Entonces("^la cantidad de tareas en de la iteración \"(.*?)\" es (\\d+)$")
     public void la_cantidad_de_tareas_en_de_la_iteración_es(String arg1, int arg2) throws Throwable {
-    	Iteracion i = iteraciones.get(arg1);
+    	Fase i = fases.get(arg1);
     	assertTrue(i.cantidadDeTareas()==arg2);
     }
 }

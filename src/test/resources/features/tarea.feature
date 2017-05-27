@@ -42,9 +42,3 @@ Característica: Medición del tiempo gastado en tareas
   	Cuando Federico trabaja 2 horas sobre "Agregar burbujas"
   	Entonces la tarea "Agregar burbujas" se estima 400% completada
   	
- 	
- 	Y existe una tarea llamada "Agregar ácido" de la iteración "Formulación"
- 	Y a la tarea "Agregar ácido" le corresponde el requisito "Burbujeo mayor al 2%"
- 	Cuando Juan trabaja 2 horas sobre "Agregar burbujas"
- 	Y Juan trabaja 3 horas sobre "Agregar ácido"
- 	Entonces el requerimiento "Burbujeo mayor al 2%" tiene 5 horas de trabajo 	

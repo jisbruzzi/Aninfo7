@@ -48,7 +48,6 @@ public class Proyecto {
 			EventoTrabajo ev = new EventoTrabajo(e,hs);
 			eventosDeTrabajo.add(ev);
 			t.registrarTrabajo(ev);
-			e.registrarTrabajo(ev);
 		}else{
 			throw new ProyectoNoEnProgresoException();
 		}

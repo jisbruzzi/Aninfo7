@@ -25,6 +25,7 @@ public class TareaSteps {
     private Map<String,Requerimiento> requerimientos;
     private Map<String,Tarea> tareas;
     private Empresa empresa;
+    private Exception last_exception;
     
     
     @Dado("^hay una empresa y un proyecto$")
@@ -69,7 +70,11 @@ public class TareaSteps {
     public void trabaja_horas_sobre(String nEmpleado, float hs, String nTarea) throws Throwable {
     	Empleado e = empresa.obtenerEmpleado(nEmpleado);
         Tarea t = tareas.get(nTarea);
-        t.registrarTrabajo(e,hs);
+        try {
+            t.registrarTrabajo(e,hs);
+        } catch (TareaTerminadaException ex){
+            this.last_exception = ex;
+        }        
     }
 
     @Entonces("^el requerimiento \"(.*?)\" tiene (\\d+) horas de trabajo$")
@@ -83,6 +88,19 @@ public class TareaSteps {
     	Tarea t = tareas.get(arg1);
     	assertTrue(t.obtenerHorasInvertidas()==arg2);
     }
+
+    @Dado("^la tarea \"(.*?)\" está terminada$")
+    public void la_tarea_está_terminada(String arg1) throws Throwable {
+        tareas.get(arg1).terminar();
+    }
+
+    @Entonces("^la operacion falla y devuelve el mensaje \"(.*?)\"$")
+    public void la_operacion_falla_y_devuelve_el_mensaje(String arg1) throws Throwable {
+        assertEquals(this.last_exception.getMessage(), arg1); 
+    }
+
+
+
 /*
     @Dado("^mi backlog se encuentra vacio$")
 	public void que_mi_backlog_se_encuentra_vacio() throws Throwable {

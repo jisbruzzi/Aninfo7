@@ -25,7 +25,10 @@ public class Tarea {
 		requerimientos.add(r);
 	}
 
-	public void registrarTrabajo(Empleado e, float hs) {
+	public void registrarTrabajo(Empleado e, float hs) throws TareaTerminadaException {
+		if (this.terminada())
+			throw new TareaTerminadaException("No se puede registrar trabajo en una tarea terminada");
+
 		eventosDeTrabajo.add(new EventoTrabajo(e,hs));
 		for (Requerimiento r : requerimientos){
 			r.registrarTrabajo(e,hs);
@@ -41,7 +44,15 @@ public class Tarea {
 	}
 	
 	public int getId(){
-		 return this.id;
+		return this.id;
+	}
+
+	public void terminar() {
+		this.terminada = true;
+	}
+
+	public boolean terminada() {
+		return this.terminada;
 	}
 
 }

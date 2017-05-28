@@ -8,11 +8,13 @@ public class Proyecto {
 	private List<Requerimiento> requerimientos;
 	private String nombre;
 	private Estado estado;
+	private List<EventoTrabajo> eventosDeTrabajo;
 
 	Proyecto(String nombre) {
 		fases = new ArrayList<Fase>();
 		requerimientos = new ArrayList<Requerimiento>();
 		this.nombre = nombre;
+		eventosDeTrabajo = new ArrayList<EventoTrabajo>();
 	}
 
 	public Fase agregarIteracion(String nombre) {
@@ -41,8 +43,12 @@ public class Proyecto {
 	}
 
 	public void registrarTrabajo(Empleado e, Tarea t, float hs) throws Exception {
+		
 		if(estado==Estado.EnProgreso){
-			t.registrarTrabajo(e, hs);
+			EventoTrabajo ev = new EventoTrabajo(e,hs);
+			eventosDeTrabajo.add(ev);
+			t.registrarTrabajo(ev);
+			e.registrarTrabajo(ev);
 		}else{
 			throw new ProyectoNoEnProgresoException();
 		}

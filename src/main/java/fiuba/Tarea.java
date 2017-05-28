@@ -27,13 +27,13 @@ public class Tarea {
 		requerimientos.add(r);
 	}
 
-	void registrarTrabajo(Empleado e, float hs) throws TareaTerminadaException {
+	void registrarTrabajo(EventoTrabajo ev) throws TareaTerminadaException {
 		if (this.terminada())
 			throw new TareaTerminadaException("No se puede registrar trabajo en una tarea terminada");
 
-		eventosDeTrabajo.add(new EventoTrabajo(e,hs));
+		eventosDeTrabajo.add(ev);
 		for (Requerimiento r : requerimientos){
-			r.registrarTrabajo(e,hs);
+			r.registrarTrabajo(ev);
 		}
 	}
 

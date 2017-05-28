@@ -20,8 +20,8 @@ public class Requerimiento {
 		return ret;
 	}
 
-	void registrarTrabajo(Empleado e, float hs) {
-		eventosDeTrabajo.add(new EventoTrabajo(e,hs));
+	void registrarTrabajo(EventoTrabajo ev) {
+		eventosDeTrabajo.add(ev);
 	}
 
 }

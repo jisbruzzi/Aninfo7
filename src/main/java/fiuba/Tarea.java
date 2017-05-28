@@ -10,6 +10,7 @@ public class Tarea {
 	
 	private String prioridad;
     private boolean terminada;
+    private float horasEstimadas;
     private int id;
 
 	public Tarea(String nTarea,int id) {
@@ -18,6 +19,7 @@ public class Tarea {
 		eventosDeTrabajo=new ArrayList<EventoTrabajo>();
 		this.prioridad = "";
     	this.terminada = false;
+    	this.horasEstimadas = 0.0f;
         this.id = id;
 	}
 
@@ -25,7 +27,10 @@ public class Tarea {
 		requerimientos.add(r);
 	}
 
-	public void registrarTrabajo(Empleado e, float hs) {
+	public void registrarTrabajo(Empleado e, float hs) throws TareaTerminadaException {
+		if (this.terminada())
+			throw new TareaTerminadaException("No se puede registrar trabajo en una tarea terminada");
+
 		eventosDeTrabajo.add(new EventoTrabajo(e,hs));
 		for (Requerimiento r : requerimientos){
 			r.registrarTrabajo(e,hs);
@@ -39,9 +44,25 @@ public class Tarea {
 		}
 		return ret;
 	}
+
+	public int porcentajeCompletado() {
+		return (int)(this.obtenerHorasInvertidas()*100/this.horasEstimadas);
+	}
 	
 	public int getId(){
-		 return this.id;
+		return this.id;
+	}
+
+	public void terminar() {
+		this.terminada = true;
+	}
+
+	public boolean terminada() {
+		return this.terminada;
+	}
+
+	public void setHorasEstimadas(float horas) {
+		this.horasEstimadas = horas;
 	}
 
 }

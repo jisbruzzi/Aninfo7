@@ -7,6 +7,7 @@ public class Proyecto {
 	private List<Fase> fases;
 	private List<Requerimiento> requerimientos;
 	private String nombre;
+	private Estado estado;
 
 	public Proyecto(String nombre) {
 		fases = new ArrayList<Fase>();
@@ -30,5 +31,23 @@ public class Proyecto {
 	public String obtenerNombre() {
 		return nombre;
 	}
+
+	public Estado obtenerEstado() {
+		return estado;
+	}
+
+	public void cambiarEstado(Estado estado2) {
+		estado=estado2;
+	}
+
+	public void registrarTrabajo(Empleado e, Tarea t, float hs) throws Exception {
+		if(estado==Estado.EnProgreso){
+			t.registrarTrabajo(e, hs);
+		}else{
+			throw new ProyectoNoEnProgresoException();
+		}
+		
+	}
+	
 
 }

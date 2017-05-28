@@ -98,8 +98,18 @@ public class TareaSteps {
     public void la_operacion_falla_y_devuelve_el_mensaje(String arg1) throws Throwable {
         assertEquals(this.last_exception.getMessage(), arg1); 
     }
+///////////////////////
+    @Dado("^la tarea \"(.*?)\" tiene una estimacion de (\\d+) horas$")
+    public void la_tarea_tiene_una_estimacion_de_horas(String ntarea, int horas) throws Throwable {
+        this.tareas.get(ntarea).setHorasEstimadas(horas);
+    }
 
 
+    @Entonces("^la tarea \"(.*?)\" se estima (\\d+)% completada$")
+    public void la_tarea_se_estima_completada(String ntarea, int porcentaje) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        assertEquals(porcentaje, this.tareas.get(ntarea).porcentajeCompletado());
+    }
 
 /*
     @Dado("^mi backlog se encuentra vacio$")

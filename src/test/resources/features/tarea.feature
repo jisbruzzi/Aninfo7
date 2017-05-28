@@ -32,3 +32,13 @@ Característica: Medición del tiempo gastado en tareas
     Cuando Juan trabaja 1 horas sobre "Agregar burbujas"
     Entonces la operacion falla y devuelve el mensaje "No se puede registrar trabajo en una tarea terminada"
 
+  Escenario: Cambia la estimación de las tareas
+    Dado la tarea "Agregar burbujas" tiene una estimacion de 16 horas
+    Cuando Federico trabaja 8 horas sobre "Agregar burbujas"
+    Entonces la tarea "Agregar burbujas" se estima 50% completada
+
+  Escenario: Puede trabajarse sobre la estimación
+    Dado la tarea "Agregar burbujas" tiene una estimacion de 2 horas
+    Cuando Federico trabaja 8 horas sobre "Agregar burbujas"
+    Entonces la tarea "Agregar burbujas" se estima 400% completada
+    

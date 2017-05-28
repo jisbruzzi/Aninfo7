@@ -10,6 +10,7 @@ public class Tarea {
 	
 	private String prioridad;
     private boolean terminada;
+    private float horasEstimadas;
     private int id;
 
 	public Tarea(String nTarea,int id) {
@@ -18,6 +19,7 @@ public class Tarea {
 		eventosDeTrabajo=new ArrayList<EventoTrabajo>();
 		this.prioridad = "";
     	this.terminada = false;
+    	this.horasEstimadas = 0.0f;
         this.id = id;
 	}
 
@@ -42,6 +44,10 @@ public class Tarea {
 		}
 		return ret;
 	}
+
+	public int porcentajeCompletado() {
+		return (int)(this.obtenerHorasInvertidas()*100/this.horasEstimadas);
+	}
 	
 	public int getId(){
 		return this.id;
@@ -53,6 +59,10 @@ public class Tarea {
 
 	public boolean terminada() {
 		return this.terminada;
+	}
+
+	public void setHorasEstimadas(float horas) {
+		this.horasEstimadas = horas;
 	}
 
 }

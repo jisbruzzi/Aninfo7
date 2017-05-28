@@ -8,7 +8,7 @@ public class Fase {
 	private List<Tarea> tareas;
 	private int proximoId;
 
-	public Fase(String nombre) {
+	Fase(String nombre) {
 		this.nombre = nombre;
 		tareas = new ArrayList<Tarea>();
 		proximoId=0;

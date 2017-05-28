@@ -9,7 +9,7 @@ public class Proyecto {
 	private String nombre;
 	private Estado estado;
 
-	public Proyecto(String nombre) {
+	Proyecto(String nombre) {
 		fases = new ArrayList<Fase>();
 		requerimientos = new ArrayList<Requerimiento>();
 		this.nombre = nombre;

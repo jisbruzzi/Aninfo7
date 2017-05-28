@@ -13,7 +13,7 @@ public class Tarea {
     private float horasEstimadas;
     private int id;
 
-	public Tarea(String nTarea,int id) {
+	Tarea(String nTarea,int id) {
 		this.nombre = nTarea;
 		requerimientos = new ArrayList<Requerimiento>();
 		eventosDeTrabajo=new ArrayList<EventoTrabajo>();
@@ -27,7 +27,7 @@ public class Tarea {
 		requerimientos.add(r);
 	}
 
-	public void registrarTrabajo(Empleado e, float hs) throws TareaTerminadaException {
+	void registrarTrabajo(Empleado e, float hs) throws TareaTerminadaException {
 		if (this.terminada())
 			throw new TareaTerminadaException("No se puede registrar trabajo en una tarea terminada");
 

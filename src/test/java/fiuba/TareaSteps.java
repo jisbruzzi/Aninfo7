@@ -39,8 +39,7 @@ public class TareaSteps {
     
     @Dado("^existe la iteración \"(.*?)\"$")
     public void que_existe_la_iteración(String arg1) throws Throwable {
-    	Fase i =proyecto.agregarIteracion(arg1);
-        fases.put(arg1,i);
+        fases.put(arg1, proyecto.agregarIteracion(arg1));
     }
 
     @Dado("^el proyecto tiene el requisito \"(.*?)\"$")

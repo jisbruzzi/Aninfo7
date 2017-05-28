@@ -31,6 +31,21 @@ Característica: Medición del tiempo gastado en tareas
  	Dado la tarea "Agregar burbujas" está terminada
  	Cuando Juan trabaja 1 horas sobre "Agregar burbujas"
  	Entonces la operacion falla
+ 	
+  Escenario: Juan trabaja sobre una tarea de un proyecto que está terminado
+  	Dado el proyecto está en estado terminado
+  	Cuando Juan trabaja 1 hora sobre "Agregar burbujas"
+  	Entonces la operacion falla 
+
+  Escenario: Juan trabaja sobre una tarea de un proyecto que está suspendido
+  	Dado el proyecto está en estado suspendido
+  	Cuando Juan trabaja 1 hora sobre "Agregar burbujas"
+  	Entonces la operacion falla
+
+  Escenario: Juan trabaja sobre una tarea de un proyecto no iniciado
+  	Dado el proyecto está en estado no iniciado
+  	Cuando Juan trabaja 1 hora sobre "Agregar burbujas"
+  	Entonces la operacion falla  	
  
   Escenario: Cambia la estimación de las tareas
   	Dado la tarea "Agregar burbujas" tiene una estimacion de 15 horas

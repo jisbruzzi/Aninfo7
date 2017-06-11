@@ -39,8 +39,9 @@ public class TareaSteps {
     }
     
     
-    @Dado("^existe la iteración \"(.*?)\"$")
-    public void que_existe_la_iteración(String arg1) throws Throwable {
+    @Dado("^existe la iteración (vacía )?\"(.*?)\"$")
+    public void que_existe_la_iteración(String vacia, String arg1) throws Throwable {
+    	//la nueva iteración siempre está vacía, el "vacía" se agrega para hacer más legibles las pruebas
         fases.put(arg1, proyecto.agregarIteracion(arg1));
     }
 
@@ -95,9 +96,14 @@ public class TareaSteps {
         tareas.get(arg1).terminar();
     }
 
-    @Entonces("^la operacion falla y devuelve el mensaje \"(.*?)\"$")
-    public void la_operacion_falla_y_devuelve_el_mensaje(String arg1) throws Throwable {
-        assertEquals(this.last_exception.getMessage(), arg1); 
+    @Entonces("la operacion falla porque no se puede registrar trabajo en un proyecto que no esté en progreso")
+    public void fallaPorProyectoNoEnProgreso() throws Throwable {
+        assertTrue(this.last_exception.getClass()==ProyectoNoEnProgresoException.class); 
+    }
+    
+    @Entonces("la operacion falla porque no se puede registrar trabajo en una tarea terminada")
+    public void fallaPorTareaTerminada() throws Throwable {
+        assertTrue(this.last_exception.getClass()==TareaTerminadaException.class); 
     }
 
     @Dado("^la tarea \"(.*?)\" tiene una estimacion de (\\d+) horas$")
@@ -129,5 +135,13 @@ public class TareaSteps {
         	default: estado=Estado.NoIniciado;break;
         }
         proyecto.cambiarEstado(estado);
+    }
+    
+    @Cuando("^se mueve la tarea \"(.*?)\" de \"(.*?)\" a \"(.*?)\"$")
+    public void se_mueve_la_tarea_de_a(String nTarea, String nFDesde, String nFHasta) throws Throwable {
+        Tarea t=this.tareas.get(nTarea);
+        Fase fDesde = this.fases.get(nFDesde);
+        Fase fHasta = this.fases.get(nFHasta);
+        this.proyecto.moverTarea(t,fDesde,fHasta);
     }
 }

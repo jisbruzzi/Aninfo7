@@ -53,6 +53,12 @@ public class Proyecto {
 		}
 		
 	}
+
+	public void moverTarea(Tarea t, Fase fDesde, Fase fHasta) {
+		fDesde.quitarTarea(t);
+		fHasta.agregarTarea(t);
+		
+	}
 	
 
 }

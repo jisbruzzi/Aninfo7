@@ -21,7 +21,7 @@ public class Fase {
 		return t;
 	}
 	
-	public void quitarTarea(int id){
+	void quitarTarea(int id){
 		for( Tarea t : tareas){
 			if(t.getId()==id){
 				tareas.remove(t);
@@ -32,6 +32,14 @@ public class Fase {
 	
 	public int cantidadDeTareas(){
 		return tareas.size();
+	}
+
+	public void quitarTarea(Tarea t) {
+		tareas.remove(t);
+	}
+
+	void agregarTarea(Tarea t) {
+		tareas.add(t);
 	}
 	
 	
